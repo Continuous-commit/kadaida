@@ -10,9 +10,6 @@ COPY Gemfile.lock /myrails/Gemfile.lock
 RUN bundle install
 COPY . /myrails
 
-COPY entrypoint.sh /usr/bin/
-RUN chmod +x /usr/bin/entrypoint.sh
-ENTRYPOINT ["entrypoint.sh"]
-EXPOSE 3000
+RUN rm -f tmp/pids/server.pid
 
 CMD ["rails", "server", "-b", "0.0.0.0"]
